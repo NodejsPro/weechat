@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="572ad568-3c31-4379-ac5b-172df883d6d9" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/server/laravel/weechat/resources/views/layouts/app.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/server/laravel/weechat/resources/views/layouts/app2.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/server/laravel/weechat/resources/views/partials/header.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/server/laravel/weechat/resources/views/partials/sidemenu.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/server/laravel/weechat/resources/views/partials/user_notification.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/server/laravel/weechat/resources/views/user/create.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/server/laravel/weechat/resources/views/user/index.blade.php" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/ace-editor.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/ace-editor.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/app.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/bootstrap.datetimepicker.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/bootstrap.datetimepicker.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/colorpicker.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/colorpicker.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/conversation-efo-all.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/conversation-efo-all.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/conversation-efo.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/conversation.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/conversation.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/customize.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/dataTables.bootstrap.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/datetimepicker.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/datetimepicker.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/fileupload.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/fileupload.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/filter.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/filter_common.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/filter_common.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/flot-chart.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/flot-chart.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/home.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/iCheck.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/iCheck.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/jquery.cookie.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/jquery.dataTables.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/jquery.dataTables.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/jquery.dataTables.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/jquery.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/jquery.tagsinput.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/jquery.textcomplete.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/moment-timezone-with-data-2012-2022.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/moment.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/moment.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/morris-chart.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/morris-chart.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/popover.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/report-efo.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/report-efo.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/scenario-chatwork-all.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/scenario-chatwork-all.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/scenario-efo-all.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/scenario-efo-all.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/scenario-facebook-all.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/scenario-facebook-all.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/scenario-line-all.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/scenario-line-all.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/slick.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/slick.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/socket.io-1.4.5.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/template_upload.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/template_upload.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/template_upload_language_ja.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/template_upload_language_ja.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/template_upload_language_vn.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/template_upload_language_vn.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/timezone.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/timezone.js.map" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/.env.example" afterPath="$PROJECT_DIR$/server/laravel/weechat/.env.example" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/.gitattributes" afterPath="$PROJECT_DIR$/server/laravel/weechat/.gitattributes" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/.gitignore" afterPath="$PROJECT_DIR$/server/laravel/weechat/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/app/Console/Kernel.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/app/Console/Kernel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/app/Exceptions/Handler.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/app/Exceptions/Handler.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/app/Http/Controllers/Auth/ForgotPasswordController.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/app/Http/Controllers/Auth/ForgotPasswordController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/app/Http/Controllers/Auth/LoginController.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/app/Http/Controllers/Auth/LoginController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/app/Http/Controllers/Auth/RegisterController.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/app/Http/Controllers/Auth/RegisterController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/app/Http/Controllers/Auth/ResetPasswordController.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/app/Http/Controllers/Auth/ResetPasswordController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/app/Http/Controllers/Controller.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/app/Http/Controllers/Controller.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/app/Http/Kernel.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/app/Http/Kernel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/app/Http/Middleware/EncryptCookies.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/app/Http/Middleware/EncryptCookies.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/app/Http/Middleware/RedirectIfAuthenticated.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/app/Http/Middleware/RedirectIfAuthenticated.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/app/Http/Middleware/TrimStrings.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/app/Http/Middleware/TrimStrings.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/app/Http/Middleware/VerifyCsrfToken.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/app/Http/Middleware/VerifyCsrfToken.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/app/Providers/AppServiceProvider.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/app/Providers/AppServiceProvider.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/app/Providers/AuthServiceProvider.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/app/Providers/AuthServiceProvider.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/app/Providers/BroadcastServiceProvider.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/app/Providers/BroadcastServiceProvider.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/app/Providers/EventServiceProvider.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/app/Providers/EventServiceProvider.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/app/Providers/RouteServiceProvider.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/app/Providers/RouteServiceProvider.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/app/User.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/app/User.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/artisan" afterPath="$PROJECT_DIR$/server/laravel/weechat/artisan" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/bootstrap/app.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/bootstrap/app.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/bootstrap/autoload.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/bootstrap/autoload.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/bootstrap/cache/.gitignore" afterPath="$PROJECT_DIR$/server/laravel/weechat/bootstrap/cache/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/bower.json" afterPath="$PROJECT_DIR$/server/laravel/weechat/bower.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/composer.json" afterPath="$PROJECT_DIR$/server/laravel/weechat/composer.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/composer.lock" afterPath="$PROJECT_DIR$/server/laravel/weechat/composer.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/config/app.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/config/app.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/config/auth.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/config/auth.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/config/broadcasting.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/config/broadcasting.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/config/cache.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/config/cache.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/config/database.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/config/database.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/config/filesystems.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/config/filesystems.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/config/mail.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/config/mail.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/config/queue.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/config/queue.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/config/services.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/config/services.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/config/session.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/config/session.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/config/view.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/config/view.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/database/.gitignore" afterPath="$PROJECT_DIR$/server/laravel/weechat/database/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/database/factories/ModelFactory.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/database/factories/ModelFactory.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/database/migrations/2014_10_12_000000_create_users_table.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/database/migrations/2014_10_12_000000_create_users_table.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/database/migrations/2014_10_12_100000_create_password_resets_table.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/database/migrations/2014_10_12_100000_create_password_resets_table.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/database/seeds/DatabaseSeeder.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/database/seeds/DatabaseSeeder.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/package.json" afterPath="$PROJECT_DIR$/server/laravel/weechat/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/phpunit.xml" afterPath="$PROJECT_DIR$/server/laravel/weechat/phpunit.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/.htaccess" afterPath="$PROJECT_DIR$/server/laravel/weechat/public/.htaccess" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/index.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/public/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/js/app.js" afterPath="$PROJECT_DIR$/server/laravel/weechat/public/js/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/robots.txt" afterPath="$PROJECT_DIR$/server/laravel/weechat/public/robots.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/public/web.config" afterPath="$PROJECT_DIR$/server/laravel/weechat/public/web.config" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/readme.md" afterPath="$PROJECT_DIR$/server/laravel/weechat/readme.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/resources/assets/js/app.js" afterPath="$PROJECT_DIR$/server/laravel/weechat/resources/assets/js/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/resources/assets/js/bootstrap.js" afterPath="$PROJECT_DIR$/server/laravel/weechat/resources/assets/js/bootstrap.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/resources/assets/js/components/Example.vue" afterPath="$PROJECT_DIR$/server/laravel/weechat/resources/assets/js/components/Example.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/resources/assets/sass/_variables.scss" afterPath="$PROJECT_DIR$/server/laravel/weechat/resources/assets/sass/_variables.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/resources/assets/sass/app.scss" afterPath="$PROJECT_DIR$/server/laravel/weechat/resources/assets/sass/app.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/resources/lang/en/auth.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/resources/lang/en/auth.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/resources/lang/en/pagination.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/resources/lang/en/pagination.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/resources/lang/en/passwords.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/resources/lang/en/passwords.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/resources/lang/en/validation.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/resources/lang/en/validation.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/resources/views/welcome.blade.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/resources/views/welcome.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/routes/api.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/routes/api.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/routes/channels.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/routes/channels.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/routes/console.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/routes/console.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/routes/web.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/routes/web.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/server.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/server.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/storage/app/.gitignore" afterPath="$PROJECT_DIR$/server/laravel/weechat/storage/app/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/storage/app/public/.gitignore" afterPath="$PROJECT_DIR$/server/laravel/weechat/storage/app/public/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/storage/framework/.gitignore" afterPath="$PROJECT_DIR$/server/laravel/weechat/storage/framework/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/storage/framework/cache/.gitignore" afterPath="$PROJECT_DIR$/server/laravel/weechat/storage/framework/cache/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/storage/framework/sessions/.gitignore" afterPath="$PROJECT_DIR$/server/laravel/weechat/storage/framework/sessions/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/storage/framework/testing/.gitignore" afterPath="$PROJECT_DIR$/server/laravel/weechat/storage/framework/testing/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/storage/framework/views/.gitignore" afterPath="$PROJECT_DIR$/server/laravel/weechat/storage/framework/views/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/storage/logs/.gitignore" afterPath="$PROJECT_DIR$/server/laravel/weechat/storage/logs/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/tests/CreatesApplication.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/tests/CreatesApplication.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/tests/Feature/ExampleTest.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/tests/Feature/ExampleTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/tests/TestCase.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/tests/TestCase.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/tests/Unit/ExampleTest.php" afterPath="$PROJECT_DIR$/server/laravel/weechat/tests/Unit/ExampleTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/laravel/weechat/webpack.mix.js" afterPath="$PROJECT_DIR$/server/laravel/weechat/webpack.mix.js" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/laravel/weechat/resources/views/user/index.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="create.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/laravel/weechat/resources/views/user/create.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/laravel/weechat/resources/views/layouts/app.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1071">
+              <caret line="63" column="18" lean-forward="true" selection-start-line="63" selection-start-column="18" selection-end-line="63" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="web.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/server/laravel/weechat/routes/web.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="14" column="36" lean-forward="false" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="36" />
+              <folding>
+                <element signature="e#7#389#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="header.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/laravel/weechat/resources/views/partials/header.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <marker date="1522878338742" expanded="true" signature="251:529" ph="..." />
+                <marker date="1522878338742" expanded="true" signature="281:528" ph="..." />
+                <marker date="1522878338742" expanded="true" signature="555:767" ph="..." />
+                <marker date="1522878338742" expanded="true" signature="2597:2862" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/server/laravel/weechat/resources/views/layouts/app.blade.php" />
+        <option value="$PROJECT_DIR$/server/laravel/weechat/routes/web.php" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/server/laravel/weechat/node_modules" />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="width" value="640" />
+    <option name="height" value="770" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="weechat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="weechat" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="weechat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="weechat" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="server" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="weechat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="weechat" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="server" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="laravel" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="weechat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="weechat" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="server" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="laravel" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="weechat" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="weechat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="weechat" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="server" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="laravel" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="weechat" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="weechat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="weechat" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="server" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="laravel" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="weechat" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="weechat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="weechat" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="server" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="laravel" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="weechat" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="layouts" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="weechat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="weechat" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="server" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="laravel" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="weechat" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="partials" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="weechat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="weechat" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="server" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="laravel" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="weechat" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="user" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="weechat" type="b2602c69:ProjectViewProjectNode" />
+              <item name="weechat" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="server" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="laravel" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="weechat" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="routes" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\git\2.laravel\weechat\server\laravel\weechat\resources\views" />
+      <recent name="C:\xampp\htdocs\git\2.laravel\weechat\server\laravel\weechat\resources\views\user" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="572ad568-3c31-4379-ac5b-172df883d6d9" name="Default" comment="" />
+      <created>1523457205650</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1523457205650</updated>
+      <workItem from="1523457306826" duration="1074000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="1074000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1296" height="786" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/server/laravel/weechat/resources/views/user/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/laravel/weechat/resources/views/user/create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/laravel/weechat/resources/views/partials/header.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1522878338742" expanded="true" signature="251:529" ph="..." />
+            <marker date="1522878338742" expanded="true" signature="281:528" ph="..." />
+            <marker date="1522878338742" expanded="true" signature="555:767" ph="..." />
+            <marker date="1522878338742" expanded="true" signature="2597:2862" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/laravel/weechat/resources/views/layouts/app.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1071">
+          <caret line="63" column="18" lean-forward="true" selection-start-line="63" selection-start-column="18" selection-end-line="63" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/laravel/weechat/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="36" lean-forward="false" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="36" />
+          <folding>
+            <element signature="e#7#389#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
