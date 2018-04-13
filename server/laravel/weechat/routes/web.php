@@ -12,13 +12,15 @@
 */
 
 Auth::routes();
-Route::group(['middleware' => ['auth', 'setLocale']], function () {
+Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/account/account-information', 'UserController@accountInformation');
     Route::post('/account/account-information', 'UserController@updateAccountInformation');
     Route::get('/account/edit', 'UserController@accountEdit');
     Route::post('/account/update', 'UserController@accountUpdate');
     Route::post('/user/getListUser', ['uses' => 'UserController@getListUser', 'as' => 'user.list']);
+    Route::resource('user', 'UserController');
+    Route::resource('account', 'UserController@index');
 });
 Route::get('/', 'Auth\LoginController@showLoginForm');
 Route::post('/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
