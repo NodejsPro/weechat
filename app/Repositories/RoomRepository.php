@@ -33,6 +33,7 @@ class RoomRepository extends BaseRepository
         $model = new $this->model;
         $model->admin_id = $created_id;
         $model->room_type = $inputs['room_type'];
+        $model->admin_key_flg = config('constants.active.unknow');
         $this->save($model, $inputs);
 
         return $model;

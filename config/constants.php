@@ -17,6 +17,7 @@ return [
     'active'    => [
         'enable'                => 1,
         'disable'               => 0,
+        'unknow'               => -1,
     ],
     'size_image' => [
       'width' => 150,
