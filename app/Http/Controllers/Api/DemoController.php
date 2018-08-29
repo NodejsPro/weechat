@@ -227,7 +227,8 @@ class DemoController extends Controller
                 'log_messages' => $log,
                 'member_name' => $member_name,
                 'user_read' => $unread_user,
-                'room_id' => $room_id
+                'room_id' => $room_id,
+                'admin_id' => @$room->admin_id,
             ], 200);
         }
         return response([
