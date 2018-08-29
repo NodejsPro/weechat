@@ -203,7 +203,7 @@ class RoomController extends Controller
         if(empty($member) || (!empty($member) && in_array($user_id, $member))){
             $room = $this->repRoom->getById($room_id);
             if($room && $this->validateMember($member, $room)){
-                $user_room = $this->repUser->getById($room->user_id);
+                $user_room = $this->repUser->getById($room->admin_id);
                 if($user_room){
                     $member_fix = array_intersect($member, $user_room->contact);
                     $inputs['member'] = array_merge($member_fix, [$user_id]);

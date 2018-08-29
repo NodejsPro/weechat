@@ -31,7 +31,7 @@ class LogMessageRepository extends BaseRepository
             $model = $model->where('created_at', '>', $last_time_of_message);
         }
         $model = $model->orderBy('created_at', 'DESC');
-        return $model->get();
+        return $model->get(['user_id', 'message_type', 'message', 'created_at']);
     }
 
     public function getLog($connect_page_id, $start_date, $end_date, $params){
