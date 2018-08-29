@@ -50,6 +50,7 @@ class Controller extends BaseController
                     'room_type' => $item->room_type,
                     'member' => $item->member,
                     'admin_id' => $item->admin_id,
+                    'admin_key_flg' => $item->admin_key_flg
                 ];
                 if($show_share_key){
                     $result[$key]['share_key_flg'] = $item->share_key_flg;
