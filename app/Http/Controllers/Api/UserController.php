@@ -188,7 +188,7 @@ class UserController extends Controller
         if($user && $user->code == $code){
             $inputs = [
                 'code' => '',
-                'is_login' => true,
+                'is_login' => config('constants.active.enable'),
             ];
             $user = $this->repUser->updateStatus($user, $inputs);
             $user_arr = [$user];
