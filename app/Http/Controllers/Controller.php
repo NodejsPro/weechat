@@ -27,7 +27,7 @@ class Controller extends BaseController
                     'id' => $user->id,
                     'phone' => $user->phone,
                     'avatar' => $user->avatar ? asset($user->avatar) : asset('images/profile.png'),
-                    'login_flg' => isset($user->login_flg) && $user->login_flg ? $user->login_flg : false,
+                    'is_login' => isset($user->is_login) && $user->is_login ? $user->is_login : false,
                     'user_name' => $user->user_name,
                 ];
                 if($return_room_flg){

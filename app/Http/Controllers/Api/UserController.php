@@ -145,7 +145,7 @@ class UserController extends Controller
                     ), 400);
             }
             $user_arr = [$user];
-            $inputs['login_flg'] = config('constants.active.enable');
+            $inputs['is_login'] = config('constants.active.enable');
             $this->repUser->update($user, $inputs);
             $data = [
                 'success' => true,
@@ -188,7 +188,7 @@ class UserController extends Controller
         if($user && $user->code == $code){
             $inputs = [
                 'code' => '',
-                'login_flg' => true,
+                'is_login' => true,
             ];
             $user = $this->repUser->updateStatus($user, $inputs);
             $user_arr = [$user];

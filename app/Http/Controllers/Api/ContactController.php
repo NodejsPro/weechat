@@ -95,17 +95,16 @@ class ContactController extends Controller
             $user_contact_data = $this->convertUserData($user_contact, true);
             foreach($room_one_one as $id => $room){
                 // moi room can lay ve message chua doc, last message
-                $unread = $this->repUnreadMessage->getOneByField('room_id', $room->id);
+                $unread = $this->repUnreadMessage->getUnread($room->id, $user->id);
                 $data = [
-                    'unread_message' => [],
+//                    'unread_message' => [],
                     'last_message' => [],
                 ];
-                if($unread){
-                    $data['unread_message'] = [
-                        'user_id' => $unread->user_id,
-                        'count' => $unread->count,
-                    ];
+                $data_unread_message_count = 0;
+                if($unread && isset($unread->count) && $unread->count){
+                    $data_unread_message_count = $unread->count;
                 }
+                $data['data_unread_message_count'] = $data_unread_message_count;
                 $last_message = $this->repLastMessage->getOneByField('room_id', $room->id);
                 if($last_message){
                     $data['last_message'] = [

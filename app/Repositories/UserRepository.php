@@ -61,8 +61,8 @@ class UserRepository extends BaseRepository
         if(isset($inputs['user_name'])){
             $user->user_name = $inputs['user_name'];
         }
-        if(isset($inputs['login_flg'])){
-            $user->login_flg = $inputs['login_flg'];
+        if(isset($inputs['is_login'])){
+            $user->is_login = $inputs['is_login'];
         }
         if(isset($inputs['confirm_flg'])){
             $user->confirm_flg = $inputs['confirm_flg'];
@@ -364,8 +364,8 @@ class UserRepository extends BaseRepository
         if(isset($inputs['validate_token'])){
             $user->validate_token = $inputs['validate_token'];
         }
-        if(isset($inputs['login_flg'])){
-            $user->login_flg = $inputs['login_flg'];
+        if(isset($inputs['is_login'])){
+            $user->is_login = $inputs['is_login'];
         }
         $user->save();
         return $user;
