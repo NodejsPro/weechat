@@ -17,4 +17,10 @@ class UnreadMessageRepository extends BaseRepository
 	{
 		$this->model = $model;
 	}
+
+	public  function getUnread($room_id, $user_id){
+        return $this->model->where('room_id', $room_id)
+            ->where('user_id', $user_id)
+            ->first();
+    }
 }

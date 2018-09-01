@@ -82,18 +82,12 @@ class RoomController extends Controller
             $data_room = $this->convertRoomData($user_room);
             $member_user_id = [];
             foreach ($data_room as $index => $room){
-                $unread = $this->repUnreadMessage->getAllByField('room_id', $room['id']);
-                Log::info($room['id']);
-                Log::info($unread);
+                $unread = $this->repUnreadMessage->getUnread('room_id', $room['id']);
                 $member_user_id = array_merge($member_user_id, $room['member']);
-                $data_unread_message = $data_last_message = [];
-                if($unread){
-                    foreach ($unread as $item){
-                        $data_unread_message[] = [
-                            'user_id' => $item->user_id,
-                            'count' => $item->count,
-                        ];
-                    }
+                $data_last_message = [];
+                $data_unread_message_count = 0;
+                if($unread && isset($unread->count) && $unread->count){
+                    $data_unread_message_count = $unread->count;
                 }
                 $last_message = $this->repLastMessage->getOneByField('room_id', $room['id']);
                 if($last_message){
@@ -103,10 +97,11 @@ class RoomController extends Controller
                         'message_type' => $last_message->message_type,
                     ];
                 }
-                Log::info($last_message);
-                $data_room[$index]['unread_message'] = $data_unread_message;
+                $data_room[$index]['data_unread_message_count'] = $data_unread_message_count;
                 $data_room[$index]['last_message'] = count($data_last_message) ? $data_last_message : [""  => ""];
             }
+            Log::info('$data_room');
+            Log::info($data_room);
             $member_data = [];
             if(count($member_user_id) > 0){
                 $member_name = $this->repUser->getList($member_user_id, 0, config('constants.per_page.5'));
