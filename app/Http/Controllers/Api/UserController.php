@@ -622,7 +622,7 @@ class UserController extends Controller
                         $data = [
                             'path' => url($upload_storage . $file_name),
                             'name' => $file_name,
-                            'name_origin' => $file_info['basename'],
+                            'name_origin' => @$file_info['filename'],
                             'file_type' => @$inputs['file_type'],
                         ];
                         return Response::json(array(
