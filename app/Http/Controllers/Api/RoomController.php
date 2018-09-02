@@ -82,7 +82,7 @@ class RoomController extends Controller
             $data_room = $this->convertRoomData($user_room);
             $member_user_id = [];
             foreach ($data_room as $index => $room){
-                $unread = $this->repUnreadMessage->getUnread('room_id', $room['id']);
+                $unread = $this->repUnreadMessage->getUnread($room['id'], $user->id);
                 $member_user_id = array_merge($member_user_id, $room['member']);
                 $data_last_message = [];
                 $data_unread_message_count = 0;
