@@ -724,4 +724,56 @@ class UserController extends Controller
             ], 422);
         }
     }
+
+    public function updateProfile(Request $request){
+        $inputs = $request->all();
+        Log::info('api updatePassword');
+        Log::info($inputs);
+        $header = $request->header();
+        $validate_token_header = @$header['validate-token'][0];
+        $user = $this->repUser->getOneByField('validate_token', $validate_token_header);
+
+        try{
+            if($user){
+                $user_id = $user->id;
+                $input_validate = [
+                    'user_name' => "required|min:6|regex:/^([a-zA-Z0-9])$/|unique:users,user_name,$user_id,_id,deleted_at,NULL",
+                    'password' => 'min:6|regex:/^.*(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[\`\~\!\@\#\$\%\^\&\*\(\)\_\+\=\-]).*$/'
+                ];
+                $validator = Validator::make(
+                    $inputs,
+                    $input_validate
+                );
+                if ($validator->fails()){
+                    return response([
+                        "success" => false,
+                        'msg' => $validator->errors()->getMessages()
+                    ], 422);
+                }
+                if($request->hasFile('avatar')) {
+                    try{
+                        $avatar = $request->file('avatar');
+                        $file_config = config('constants.file_upload');
+                        $extension_file_upload = $avatar->getClientOriginalExtension();
+                        $path = $file_config['file_path_base'] . DIRECTORY_SEPARATOR . $file_config['file_path_profile'] . DIRECTORY_SEPARATOR . uniqid().'.'.$extension_file_upload;
+                        $this->resizeImage($this->file_manager, $avatar, config('constants.size_image'), public_path($path));
+                        $inputs['avatar'] = $path;
+                    }catch (\Exception $e){
+                        $msg = 'error upload file: '. $e->getMessage();
+                    }
+                }
+                $user = $this->repUser->updateProfile($user, $inputs);
+                return Response::json(array(
+                    'success' => true,
+                    'data' => $this->convertUserData([$user])
+                ), 200);
+            }
+        }catch(\Exception $e){
+            Log::info($e);
+        }
+        return Response::json(array(
+            'success' => false,
+            'errors' => 'Loi'
+        ), 400);
+    }
 }

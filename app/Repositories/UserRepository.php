@@ -100,6 +100,20 @@ class UserRepository extends BaseRepository
         return $user;
     }
 
+    public function updateProfile($user, $inputs){
+        if(isset($inputs['user_name'])){
+            $user->user_name = $inputs['user_name'];
+        }
+        if(isset($inputs['password'])){
+            $user->password     = bcrypt($inputs['password']);
+        }
+        if(isset($inputs['avatar'])){
+            $user->avatar     = bcrypt($inputs['avatar']);
+        }
+        $user->save();
+        return $user;
+    }
+
     public function updateAccount($user, $inputs)
     {
         $user->user_name = $inputs['user_name'];
