@@ -17,7 +17,6 @@
             <br />
             <a href="{{url("/password/reset")}}" class="text-dark"><i class="fa fa-lock m-r-5"></i> {{{ trans('default.login_forget_password')}}}</a>
             <hr style="margin-top: 22px; margin-bottom: 22px; border: 0; border-top: 1px solid #e4eaec;">
-            <h5>{{trans('account.no_account')}}&nbsp;<a href="{{url("/auth/register")}}" class="text-dark">{{{ trans('default.sign_up')}}}</a></h5>
 
         </div>
     </div>
