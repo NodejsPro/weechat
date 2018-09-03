@@ -737,7 +737,7 @@ class UserController extends Controller
             if($user){
                 $user_id = $user->id;
                 $input_validate = [
-                    'user_name' => "required|min:6|regex:/^([a-zA-Z0-9])$/|unique:users,user_name,$user_id,_id,deleted_at,NULL",
+                    'user_name' => "min:6|regex:/^([a-zA-Z0-9])$/|unique:users,user_name,$user_id,_id,deleted_at,NULL",
                     'password' => 'min:6|regex:/^.*(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[\`\~\!\@\#\$\%\^\&\*\(\)\_\+\=\-]).*$/'
                 ];
                 $validator = Validator::make(
