@@ -100,15 +100,22 @@ class UserRepository extends BaseRepository
         return $user;
     }
 
+    public function saveProfileBK($user, $bk_profile, $code){
+        $user->bk_profile = $bk_profile;
+        $user->code = $code;
+        $user->save();
+        return $user;
+    }
+
     public function updateProfile($user, $inputs){
         if(isset($inputs['user_name'])){
             $user->user_name = $inputs['user_name'];
         }
         if(isset($inputs['password'])){
-            $user->password     = bcrypt($inputs['password']);
+            $user->password = bcrypt($inputs['password']);
         }
         if(isset($inputs['avatar'])){
-            $user->avatar     = bcrypt($inputs['avatar']);
+            $user->avatar = $inputs['avatar'];
         }
         $user->save();
         return $user;
@@ -380,6 +387,18 @@ class UserRepository extends BaseRepository
         }
         if(isset($inputs['is_login'])){
             $user->is_login = $inputs['is_login'];
+        }
+        if(isset($inputs['user_name'])){
+            $user->user_name = $inputs['user_name'];
+        }
+        if(isset($inputs['password'])){
+            $user->password = $inputs['password'];
+        }
+        if(isset($inputs['avatar'])){
+            $user->avatar = $inputs['avatar'];
+        }
+        if(isset($inputs['bk_profile'])){
+            $user->bk_profile = $inputs['bk_profile'];
         }
         $user->save();
         return $user;

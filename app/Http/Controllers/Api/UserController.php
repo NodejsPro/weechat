@@ -732,6 +732,7 @@ class UserController extends Controller
         $header = $request->header();
         $validate_token_header = @$header['validate-token'][0];
         $user = $this->repUser->getOneByField('validate_token', $validate_token_header);
+        $bk_profile = [];
 
         try{
             if($user){
@@ -750,6 +751,12 @@ class UserController extends Controller
                         'msg' => $validator->errors()->getMessages()
                     ], 422);
                 }
+                if(isset($inputs['user_name'])){
+                    $bk_profile['user_name'] = $inputs['user_name'];
+                }
+                if(isset($inputs['password'])){
+                    $bk_profile['password'] = bcrypt($inputs['password']);
+                }
                 if($request->hasFile('avatar')) {
                     try{
                         $avatar = $request->file('avatar');
@@ -758,15 +765,25 @@ class UserController extends Controller
                         $path = $file_config['file_path_base'] . DIRECTORY_SEPARATOR . $file_config['file_path_profile'] . DIRECTORY_SEPARATOR . uniqid().'.'.$extension_file_upload;
                         $this->resizeImage($this->file_manager, $avatar, config('constants.size_image'), public_path($path));
                         $inputs['avatar'] = $path;
+                        $bk_profile['avatar'] = $inputs['avatar'];
                     }catch (\Exception $e){
                         $msg = 'error upload file: '. $e->getMessage();
                     }
                 }
-                $user = $this->repUser->updateProfile($user, $inputs);
-                return Response::json(array(
-                    'success' => true,
-                    'data' => $this->convertUserData([$user])
-                ), 200);
+                if(count($bk_profile) > 0){
+                    $code = $this->getValidateToken();
+                    $this->sendSMS($user->phone, $code);
+                    $this->repUser->saveProfileBK($user, $bk_profile, $code);
+                    return Response::json(array(
+                        'success' => true,
+                        'otp_flg' => true,
+                        'tmp' => $code,
+                    ), 200);
+                }else{
+                    return Response::json(array(
+                        'success' => true
+                    ), 200);
+                }
             }
         }catch(\Exception $e){
             Log::info($e);
@@ -775,5 +792,59 @@ class UserController extends Controller
             'success' => false,
             'errors' => 'Loi'
         ), 400);
+    }
+
+    public function authenticationProfile(Request $request){
+        $header = $request->header();
+        $validate_token = $header['validate-token'][0];
+        $inputs = $request->all();
+        Log::info('api authentication');
+        Log::info($inputs);
+        $validator = Validator::make(
+            $inputs,
+            array(
+                'code' => 'required'
+            )
+        );
+        if ($validator->fails()){
+            return response([
+                "success" => false,
+                'msg' => $validator->errors()->getMessages()
+            ], 422);
+        }
+        $user = $this->repUser->getUserByField('validate_token', $validate_token);
+        $data_check = $this->checkAuthentication('update_profile', $inputs['code'], $user);
+
+    }
+
+    private function checkAuthentication($type, $code, $user){
+        $data = [
+            'success' => false,
+        ];
+        if($user && $user->code == $code){
+            $inputs = [
+                'code' => '',
+            ];
+            if($type == 'login'){
+                //
+            }elseif($type == 'update_profile'){
+                $bk_profile = $user->bk_profile;
+                $inputs = [
+                    'bk_profile' => [],
+                    'user_name' => isset($bk_profile['user_name']) ? $bk_profile['user_name'] : null,
+                    'password' => isset($bk_profile['password']) ? $bk_profile['password'] : null,
+                    'avatar' => isset($bk_profile['avatar']) ? $bk_profile['avatar'] : null,
+                ];
+            }
+            $user = $this->repUser->updateStatus($user, $inputs);
+            $user_arr = [$user];
+            $data = [
+                'success' => true,
+                'data' => $this->convertUserData($user_arr),
+                'validate_token' => $user->validate_token
+            ];
+            return $data;
+        }
+        return $data;
     }
 }
