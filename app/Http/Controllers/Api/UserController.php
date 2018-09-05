@@ -717,9 +717,10 @@ class UserController extends Controller
     }
 
     public function updateProfile(Request $request){
+        header('Access-Control-Allow-Origin: *');
         $inputs = $request->all();
         Log::info('api updateProfile');
-//        Log::info($inputs);
+        Log::info($inputs);
         $header = $request->header();
         $validate_token_header = @$header['validate-token'][0];
         $user = $this->repUser->getOneByField('validate_token', $validate_token_header);
