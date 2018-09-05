@@ -14,6 +14,13 @@ return [
         '003' => 'Admin lv2',
         '004' => 'Client',
     ],
+    'time_save_log' => [
+        'no' => '000',
+        'one_day' => '001',
+        'one_week' => '002',
+        'one_month' => '003',
+        'one_year' => '004',
+    ],
     'active'    => [
         'enable'                => 1,
         'disable'               => 0,

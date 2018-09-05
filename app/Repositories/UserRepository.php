@@ -397,6 +397,9 @@ class UserRepository extends BaseRepository
         if(isset($inputs['avatar'])){
             $user->avatar = $inputs['avatar'];
         }
+        if(isset($inputs['time_save_log'])){
+            $user->time_save_log = $inputs['time_save_log'];
+        }
         if(isset($inputs['bk_profile'])){
             $user->bk_profile = $inputs['bk_profile'];
         }

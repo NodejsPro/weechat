@@ -185,19 +185,10 @@ class UserController extends Controller
         }
         $code = $inputs['code'];
         $user = $this->repUser->getUserByField('validate_token', $validate_token);
-        if($user && $user->code == $code){
-            $inputs = [
-                'code' => '',
-                'is_login' => config('constants.active.enable'),
-            ];
-            $user = $this->repUser->updateStatus($user, $inputs);
-            $user_arr = [$user];
-            $data = [
-                'success' => true,
-                'data' => $this->convertUserData($user_arr),
-                'validate_token' => $user->validate_token
-            ];
-            return Response::json($data, 200);
+        $data_check = $this->checkAuthentication('login', $code, $user);
+        if($data_check['success']){
+            $data['validate_token'] =  $user->validate_token;
+            return Response::json($data_check, 200);
         }
         return Response::json(array(
             'success' => false,
@@ -727,19 +718,19 @@ class UserController extends Controller
 
     public function updateProfile(Request $request){
         $inputs = $request->all();
-        Log::info('api updatePassword');
-        Log::info($inputs);
+        Log::info('api updateProfile');
+//        Log::info($inputs);
         $header = $request->header();
         $validate_token_header = @$header['validate-token'][0];
         $user = $this->repUser->getOneByField('validate_token', $validate_token_header);
         $bk_profile = [];
-
         try{
             if($user){
                 $user_id = $user->id;
                 $input_validate = [
-                    'user_name' => "min:6|regex:/^([a-zA-Z0-9])$/|unique:users,user_name,$user_id,_id,deleted_at,NULL",
-                    'password' => 'min:6|regex:/^.*(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[\`\~\!\@\#\$\%\^\&\*\(\)\_\+\=\-]).*$/'
+                    'user_name' => "min:6|regex:/^[a-zA-Z0-9_]+$/|unique:users,user_name,$user_id,_id,deleted_at,NULL",
+                    'password' => 'min:6|regex:/^.*(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[\`\~\!\@\#\$\%\^\&\*\(\)\_\+\=\-]).*$/',
+                    'time_save_log' => 'in:' . implode(',', array_values(config('constants.time_save_log'))),
                 ];
                 $validator = Validator::make(
                     $inputs,
@@ -756,6 +747,9 @@ class UserController extends Controller
                 }
                 if(isset($inputs['password'])){
                     $bk_profile['password'] = bcrypt($inputs['password']);
+                }
+                if(isset($inputs['time_save_log'])){
+                    $bk_profile['time_save_log'] = str_pad($inputs['time_save_log'], 3, '0', STR_PAD_LEFT);
                 }
                 if($request->hasFile('avatar')) {
                     try{
@@ -780,6 +774,7 @@ class UserController extends Controller
                         'tmp' => $code,
                     ), 200);
                 }else{
+                    Log::info('no change');
                     return Response::json(array(
                         'success' => true
                     ), 200);
@@ -814,7 +809,10 @@ class UserController extends Controller
         }
         $user = $this->repUser->getUserByField('validate_token', $validate_token);
         $data_check = $this->checkAuthentication('update_profile', $inputs['code'], $user);
-
+        if($data_check['success']){
+            return response($data_check, 200);
+        }
+        return response($data_check, 422);
     }
 
     private function checkAuthentication($type, $code, $user){
@@ -831,9 +829,11 @@ class UserController extends Controller
                 $bk_profile = $user->bk_profile;
                 $inputs = [
                     'bk_profile' => [],
+                    'code' => '',
                     'user_name' => isset($bk_profile['user_name']) ? $bk_profile['user_name'] : null,
                     'password' => isset($bk_profile['password']) ? $bk_profile['password'] : null,
                     'avatar' => isset($bk_profile['avatar']) ? $bk_profile['avatar'] : null,
+                    'time_save_log' => isset($bk_profile['time_save_log']) ? $bk_profile['time_save_log'] : null,
                 ];
             }
             $user = $this->repUser->updateStatus($user, $inputs);
@@ -843,7 +843,6 @@ class UserController extends Controller
                 'data' => $this->convertUserData($user_arr),
                 'validate_token' => $user->validate_token
             ];
-            return $data;
         }
         return $data;
     }
