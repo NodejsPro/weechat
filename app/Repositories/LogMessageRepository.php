@@ -150,4 +150,15 @@ class LogMessageRepository extends BaseRepository
         return $model;
     }
 
+    public function clearLogByUserRoom($room_id, $user_id, $time_save_log){
+        $model = new $this->model;
+        $model->setCollection($room_id . $this->base_collection);
+        $model = $model->where('ymd', '<=', $time_save_log);
+        $model = $model->raw(function($collection) use ($user_id, $time_save_log){
+            return $collection->update(null,
+                array('$addToSet' => array( 'clear_log' =>  $user_id  ) ) );
+        });
+        $model->save();
+    }
+
 }

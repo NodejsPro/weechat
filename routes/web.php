@@ -31,6 +31,7 @@ Route::group(['middleware' => ['auth', 'authentication']], function () {
 });
 Route::get('/', 'Auth\LoginController@showLoginForm');
 Route::post('/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
+Route::post('/password/reset', 'Auth\ForgotPasswordController@sendTokenPhone');
 Route::get('/auth/register', 'Auth\RegisterController@showMailRegisterForm');
 Route::post('/auth/register', 'Auth\RegisterController@sendRegisterLink');
 Route::get('/auth/confirm/{token}', 'Auth\RegisterController@showRegisterForm');

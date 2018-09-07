@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'per_page'  => [5, 10, 15, 20, 50, 500],
+    'per_page'  => [5, 10, 15, 20, 50, 500, 100000],
     'authority' => [
         'super_admin' => '001',
         'admin_lv1' => '002',
@@ -20,6 +20,13 @@ return [
         'one_week' => '002',
         'one_month' => '003',
         'one_year' => '004',
+    ],
+    'time_save_log_day' => [
+        '000' => 0,
+        '001' => 1,
+        '002' => 7,
+        '003' => 30,
+        '004' => 365,
     ],
     'active'    => [
         'enable'                => 1,

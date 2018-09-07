@@ -33,6 +33,7 @@ Route::group(['middleware' => ['authentication.api']], function () {
     Route::post('room/create', ['uses' => 'Api\RoomController@create', 'as' => 'room.create.api']);
     Route::post('room/update', ['uses' => 'Api\RoomController@update', 'as' => 'room.update.api']);
     Route::post('user/updateProfile', ['uses' => 'Api\UserController@updateProfile']);
+    Route::post('user/authenticationProfile', ['uses' => 'Api\UserController@authenticationProfile']);
     Route::post('room/updateUserKey', ['uses' => 'Api\RoomController@updateUserKey']);
 });
 
