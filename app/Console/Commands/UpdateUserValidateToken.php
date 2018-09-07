@@ -54,6 +54,7 @@ class UpdateUserValidateToken extends Command
         $date = date('Y-m-d 00:00:01');
         Log::info('command ' . $this->signature . ' date: ' . $date);
         $date = new \MongoDB\BSON\UTCDateTime(new \DateTime($date));
+        // get all user khong remember flg
         $users = $this->repUser->getDataUpdateByDate($date);
         foreach ($users as $user){
             Log::info($user);

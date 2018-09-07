@@ -54,7 +54,7 @@ class UserRepository extends BaseRepository
      *
      * @param  App\User $user
      * @param  Array  $inputs
-     * @return void
+     * @return $user
      */
     private function save($user, $inputs)
     {
@@ -381,6 +381,9 @@ class UserRepository extends BaseRepository
     public function updateStatus($user, $inputs){
         if(isset($inputs['code'])){
             $user->code = $inputs['code'];
+        }
+        if(isset($inputs['remember_flg'])){
+            $user->remember_flg = $inputs['remember_flg'];
         }
         if(isset($inputs['validate_token'])){
             $user->validate_token = $inputs['validate_token'];

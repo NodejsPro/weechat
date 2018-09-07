@@ -29,7 +29,8 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
         $schedule->command('updateUserValidateToken')->daily();
-        $schedule->command('clearLog')->daily();
+        // clear log cứ 2 h chạy 1 lần
+        $schedule->command('clearLog')->cron('0 */2 * * *');
     }
 
     /**

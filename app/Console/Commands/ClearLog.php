@@ -73,7 +73,7 @@ class ClearLog extends Command
                 }
             // trường hợp clear log toàn bộ
             }else{
-                $users = $this->repUser->getAllData();
+                $users = $this->repUser->getContact($room->member, 0, config('constants.per_page.6'));
                 foreach($users as $user){
                     $this->clearLogUser($room_id, $user);
                 }
@@ -84,12 +84,11 @@ class ClearLog extends Command
     public function clearLogUser($room_id, $user){
         $time_log = config('constants.time_save_log');
         $time_log_day = config('constants.time_save_log_day');
-//        $user_time_log = $time_log['one_year'];
-        $user_time_log = $time_log['one_day'];
+        $user_time_log = $time_log['one_year'];
         if(isset($user->time_save_log) && in_array($user->time_save_log, $time_log)){
             $user_time_log = $user->time_save_log;
         }
-        $day_clear_log = date('Y-m-d', strtotime(-$time_log_day[$user_time_log]));
+        $day_clear_log = date('Y-m-d', strtotime(-$time_log_day[$user_time_log] .'days'));
         $this->repLogMessage->clearLogByUserRoom($room_id, $user->id, $day_clear_log);
     }
 

@@ -95,6 +95,8 @@ class UserController extends Controller
             if($sms_status){
                 $validate_token = $this->getValidateToken();
                 $inputs['validate_token'] = $validate_token;
+                $active = config('constants.active');
+                $inputs['remember_flg'] = isset($inputs['remember_flg']) ? $inputs['remember_flg'] : $active['enable'];
                 $this->repUser->updateStatus($user, $inputs);
                 $data = [
                     'success' => true,
