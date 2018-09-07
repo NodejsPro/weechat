@@ -19,7 +19,7 @@ class Controller extends BaseController
     	return bin2hex(openssl_random_pseudo_bytes(24));
     }
 
-    public function convertUserData($user_data, $return_room_flg = false){
+    public function convertUserData($user_data, $return_room_flg = false, $option_add = []){
         $result = [];
         if(!empty($user_data)){
             foreach ($user_data as $user){
@@ -30,6 +30,9 @@ class Controller extends BaseController
                     'is_login' => isset($user->is_login) && $user->is_login ? $user->is_login : config('constants.active.disable'),
                     'user_name' => $user->user_name,
                 ];
+                foreach($option_add as $option){
+                    $user_arr[$option] = $user->$option;
+                }
                 if($return_room_flg){
                     $user_arr['unread_message'] = [];
                     $user_arr['last_message'] = [];

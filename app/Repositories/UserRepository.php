@@ -64,6 +64,9 @@ class UserRepository extends BaseRepository
         if(isset($inputs['is_login'])){
             $user->is_login = $inputs['is_login'];
         }
+        if(isset($inputs['time_save_log'])){
+            $user->time_save_log = $inputs['time_save_log'];
+        }
         if(isset($inputs['confirm_flg'])){
             $user->confirm_flg = $inputs['confirm_flg'];
         }

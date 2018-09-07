@@ -67,6 +67,7 @@ class UserRequest extends Request
         $authority = Auth::user()->authority;
         $validation = array();
         $validation['authority'] = 'required';
+        $validation['time_save_log'] = 'required|in:' . implode(',', array_values(config('constants.time_save_log')));
         //edit user
         if(isset($user_id)){
             $validation['user_name'] = "required|min:6|unique:users,user_name,$user_id,_id,deleted_at,NULL";

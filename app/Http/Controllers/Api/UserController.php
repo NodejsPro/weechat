@@ -151,7 +151,7 @@ class UserController extends Controller
             $this->repUser->update($user, $inputs);
             $data = [
                 'success' => true,
-                'data' => $this->convertUserData($user_arr),
+                'data' => $this->convertUserData($user_arr, false, ['time_save_log']),
                 'validate_token' => $user->validate_token
             ];
             return Response::json($data, 200);
@@ -844,7 +844,7 @@ class UserController extends Controller
             $user_arr = [$user];
             $data = [
                 'success' => true,
-                'data' => $this->convertUserData($user_arr),
+                'data' => $this->convertUserData($user_arr, false, ['time_save_log']),
                 'validate_token' => $user->validate_token
             ];
         }
