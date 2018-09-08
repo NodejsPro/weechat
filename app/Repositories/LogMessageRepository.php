@@ -18,7 +18,7 @@ class LogMessageRepository extends BaseRepository
 		$this->model = $logMessage;
 	}
 
-    public function getMessage($room_id, $limit = null, $last_time_of_message = null) {
+    public function getMessage($room_id, $user_id, $limit = null, $last_time_of_message = null) {
         Log::info($room_id.'---' . $limit.'---' .$last_time_of_message);
         $model = new $this->model;
         $model->setCollection($room_id . $this->base_collection);
@@ -26,7 +26,8 @@ class LogMessageRepository extends BaseRepository
             $limit = config('constants.log_message_limit');
         }
         $model = $model->where('room_id', $room_id)
-            ->take($limit);
+                        ->whereNotIn('clear_log', [$user_id])
+                        ->take($limit);
         if($last_time_of_message) {
             $model = $model->where('created_at', '>', $last_time_of_message);
         }
