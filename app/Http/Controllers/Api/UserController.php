@@ -769,7 +769,7 @@ class UserController extends Controller
                 }
                 if(count($bk_profile) > 0){
 //                    $code = $this->getValidateToken();
-                    $code = $user->id;
+                    $code = '123456789';
                     $this->sendSMS($user->phone, $code);
                     $this->repUser->saveProfileBK($user, $bk_profile, $code);
                     return Response::json(array(
