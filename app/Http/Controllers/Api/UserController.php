@@ -151,7 +151,7 @@ class UserController extends Controller
             $this->repUser->update($user, $inputs);
             $data = [
                 'success' => true,
-                'data' => $this->convertUserData($user_arr, false, ['time_save_log']),
+                'data' => $this->convertUserData($user_arr, false, ['time_save_log', 'remember_flg']),
                 'validate_token' => $user->validate_token
             ];
             return Response::json($data, 200);
@@ -733,13 +733,22 @@ class UserController extends Controller
                 $input_validate = [
                     'user_name' => "min:6|regex:/^[a-zA-Z0-9_]+$/|unique:users,user_name,$user_id,_id,deleted_at,NULL",
                     'password' => 'min:6|regex:/^.*(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[\`\~\!\@\#\$\%\^\&\*\(\)\_\+\=\-]).*$/',
-                    'time_save_log' => 'in:' . implode(',', array_values(config('constants.time_save_log'))),
+                    'time_save_log.save' => 'in:' . implode(',', array_values(config('constants.active'))),
                 ];
+                // save_log: [action: true, time: 4]
+                if(isset($inputs['time_save_log'])){
+                    $input_validate['time_save_log'] = 'required|array';
+                    if(isset($inputs['time_save_log']['save']) && isset($inputs['time_save_log']['save'])){
+                        $input_validate['time_save_log.day'] = 'required|numeric|min:1';
+                    }
+                }
                 $validator = Validator::make(
                     $inputs,
                     $input_validate
                 );
                 if ($validator->fails()){
+                    Log::info('error');
+                    Log::info($validator->errors()->getMessages());
                     return response([
                         "success" => false,
                         'msg' => $validator->errors()->getMessages()
@@ -752,7 +761,7 @@ class UserController extends Controller
                     $bk_profile['password'] = bcrypt($inputs['password']);
                 }
                 if(isset($inputs['time_save_log'])){
-                    $bk_profile['time_save_log'] = str_pad($inputs['time_save_log'], 3, '0', STR_PAD_LEFT);
+                    $bk_profile['time_save_log'] = $inputs['time_save_log'];
                 }
                 if($request->hasFile('avatar')) {
                     try{
@@ -844,7 +853,7 @@ class UserController extends Controller
             $user_arr = [$user];
             $data = [
                 'success' => true,
-                'data' => $this->convertUserData($user_arr, false, ['time_save_log']),
+                'data' => $this->convertUserData($user_arr, false, ['time_save_log', 'remember_flg']),
                 'validate_token' => $user->validate_token
             ];
         }
