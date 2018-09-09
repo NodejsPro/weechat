@@ -219,7 +219,12 @@ class DemoController extends Controller
             $member = $room->member;
             $last_time_of_message = isset($inputs['log_last_time']) ? (int)$inputs['log_last_time'] : null;
             $limit = isset($inputs['length']) ? (int)$inputs['length'] : config('constants.log_message_limit');
-            $log = $this->repLogMessage->getMessage($room_id, $user_id, $limit, $last_time_of_message);
+            $user_save_log = $user->time_save_log;
+            if(isset($user_save_log['save']) && !((int)$user_save_log['save'])){
+                $log = new Collection();
+            }else{
+                $log = $this->repLogMessage->getMessage($room_id, $user_id, $limit, $last_time_of_message);
+            }
             $user_member = $this->repUser->getList($member, 0, config('constants.per_page.5'));
             $member_name = $this->convertUserData($user_member);
             return Response::json([
