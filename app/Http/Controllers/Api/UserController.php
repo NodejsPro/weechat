@@ -737,23 +737,22 @@ class UserController extends Controller
                 $input_validate = [
                     'user_name' => "min:6|regex:/^[a-zA-Z0-9_]+$/|unique:users,user_name,$user_id,_id,deleted_at,NULL",
                     'password' => 'min:6|regex:/^.*(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[\`\~\!\@\#\$\%\^\&\*\(\)\_\+\=\-]).*$/',
-                    'time_save_log.save' => 'in:' . implode(',', array_values(config('constants.active'))),
+                    'time_save_log_save' => 'in:' . implode(',', array_values(config('constants.active'))),
                 ];
                 // save_log: [save: true, day: 4]
                 // save_log [save: false]
-                if(isset($inputs['time_save_log'])){
-                    $input_validate['time_save_log'] = 'required|array';
-                    $input_validate['time_save_log.save'] = 'required';
-                    if(isset($inputs['time_save_log']['save'])){
-                        $save_action = (int)$inputs['time_save_log']['save'];
-                        if($save_action){
-                            $input_validate['time_save_log.day'] = 'required|numeric|min:1';
-                            $inputs['time_save_log']['day'] = (int)$inputs['time_save_log']['day'];
-                        }else{
-                            unset($inputs['time_save_log']['day']);
-                        }
-                        $inputs['time_save_log']['save'] = $save_action;
+                if(isset($inputs['time_save_log_save'])){
+                    $save_action = (int)$inputs['time_save_log_save'];
+                    $inputs['time_save_log'] = [
+                        'save' => $save_action
+                    ];
+                    if($save_action){
+                        $input_validate['time_save_log_day'] = 'required|numeric|min:1';
+                        $inputs['time_save_log']['day'] = @$inputs['time_save_log_day'];
+                    }else{
+                        unset($inputs['time_save_log_day']);
                     }
+                    Log::info($inputs['time_save_log']);
                 }
                 $validator = Validator::make(
                     $inputs,
