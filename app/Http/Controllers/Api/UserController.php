@@ -81,9 +81,12 @@ class UserController extends Controller
         $user_name_phone = $inputs['user-name-phone'];
         $password = $inputs['password'];
         $user = $this->repUser->getUserActive($user_name_phone);
+        $active = config('constants.active');
         if($user && Hash::check($password, $user->password)){
             $code = $user->code;
-            $inputs = [];
+            $inputs = [
+                'remember_flg' => isset($inputs['remember_flg']) ? $inputs['remember_flg'] : $active['enable']
+            ];
             // call api code
             if(config('app.env') == 'local'){
                 $code = config('app.code_sms');
@@ -95,8 +98,6 @@ class UserController extends Controller
             if($sms_status){
                 $validate_token = $this->getValidateToken();
                 $inputs['validate_token'] = $validate_token;
-                $active = config('constants.active');
-                $inputs['remember_flg'] = isset($inputs['remember_flg']) ? $inputs['remember_flg'] : $active['enable'];
                 $this->repUser->updateStatus($user, $inputs);
                 $data = [
                     'success' => true,
@@ -139,6 +140,7 @@ class UserController extends Controller
         $user = $this->repUser->getUserByField('phone', $phone);
         if($user){
             if($user->validate_token != $validate_token_header || !$user->remember_flg){
+                // không có remember
                 return Response::json(
                     array(
                         'success' => false,
@@ -156,6 +158,7 @@ class UserController extends Controller
             ];
             return Response::json($data, 200);
         }
+        // user khong ton tai
         return Response::json(
             array(
                 'success' => false,
