@@ -139,7 +139,8 @@ class UserController extends Controller
         $validate_token_header = $header['validate-token'][0];
         $user = $this->repUser->getUserByField('phone', $phone);
         if($user){
-            if($user->validate_token != $validate_token_header || !$user->remember_flg){
+            $remember_flg = (int)$user->remember_flg;
+            if($user->validate_token != $validate_token_header || !$remember_flg){
                 // không có remember
                 return Response::json(
                     array(
@@ -738,11 +739,20 @@ class UserController extends Controller
                     'password' => 'min:6|regex:/^.*(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[\`\~\!\@\#\$\%\^\&\*\(\)\_\+\=\-]).*$/',
                     'time_save_log.save' => 'in:' . implode(',', array_values(config('constants.active'))),
                 ];
-                // save_log: [action: true, time: 4]
+                // save_log: [save: true, day: 4]
+                // save_log [save: false]
                 if(isset($inputs['time_save_log'])){
                     $input_validate['time_save_log'] = 'required|array';
-                    if(isset($inputs['time_save_log']['save']) && isset($inputs['time_save_log']['save'])){
-                        $input_validate['time_save_log.day'] = 'required|numeric|min:1';
+                    $input_validate['time_save_log.save'] = 'required';
+                    if(isset($inputs['time_save_log']['save'])){
+                        $save_action = (int)$inputs['time_save_log']['save'];
+                        if($save_action){
+                            $input_validate['time_save_log.day'] = 'required|numeric|min:1';
+                            $inputs['time_save_log']['day'] = (int)$inputs['time_save_log']['day'];
+                        }else{
+                            unset($inputs['time_save_log']['day']);
+                        }
+                        $inputs['time_save_log']['save'] = $save_action;
                     }
                 }
                 $validator = Validator::make(

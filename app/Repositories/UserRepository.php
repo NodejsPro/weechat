@@ -34,7 +34,7 @@ class UserRepository extends BaseRepository
         $user->phone            = $inputs['phone'];
         $user->authority        = $inputs['authority'];
         $user->created_id       = $created_id;
-        $user->remember_flg       = $inputs['remember_flg'];
+        $user->remember_flg       = (int)$inputs['remember_flg'];
         $user = $this->save($user, $inputs);
 
         return $user;
@@ -386,7 +386,7 @@ class UserRepository extends BaseRepository
             $user->code = $inputs['code'];
         }
         if(isset($inputs['remember_flg'])){
-            $user->remember_flg = $inputs['remember_flg'];
+            $user->remember_flg = (int)$inputs['remember_flg'];
         }
         if(isset($inputs['validate_token'])){
             $user->validate_token = $inputs['validate_token'];

@@ -82,13 +82,16 @@ class ClearLog extends Command
     }
 
     public function clearLogUser($room_id, $user){
-        $time_log = config('constants.time_save_log');
-        $time_log_day = config('constants.time_save_log_day');
-        $user_time_log = $time_log['one_year'];
-        if(isset($user->time_save_log) && in_array($user->time_save_log, $time_log)){
-            $user_time_log = $user->time_save_log;
+        $user_time_log = config('constants.time_save_log_default');
+        $user_save_log = $user->time_save_log;
+        if(isset($user_save_log['save'])){
+            // luu log voi so ngay
+            // nếu tồn tại offset day -> clear số ngày trước đấy.
+            // nếu ko có offset day -> clear từ ngày hiện tại
+            $user_time_log = (int)$user_save_log['day'];
         }
-        $day_clear_log = date('Y-m-d', strtotime(-$time_log_day[$user_time_log] .'days'));
+        Log::info('**** clear user ' . $user->user_name. ' day: ' . $user_time_log);
+        $day_clear_log = date('Y-m-d', strtotime(-$user_time_log .'days'));
         $this->repLogMessage->clearLogByUserRoom($room_id, $user->id, $day_clear_log);
     }
 
