@@ -862,12 +862,6 @@ class UserController extends Controller
                     'time_save_log' => isset($bk_profile['time_save_log']) ? $bk_profile['time_save_log'] : null,
                 ];
                 Log::info('update profile database ', $inputs);
-                // khong luu log thi chay luon command clear log
-                if(isset($bk_profile['time_save_log']['save']) && !(int)$bk_profile['time_save_log']['save']){
-                    Artisan::queue('clearLog', [
-                        'user_id' => $user->id, '--queue' => 'default'
-                    ]);
-                }
             }
             $user = $this->repUser->updateStatus($user, $inputs);
             $user_arr = [$user];
@@ -876,6 +870,12 @@ class UserController extends Controller
                 'data' => $this->convertUserData($user_arr, false, ['time_save_log', 'remember_flg']),
                 'validate_token' => $user->validate_token
             ];
+            // khong luu log thi chay luon command clear log
+            if(isset($bk_profile['time_save_log']['save']) && !(int)$bk_profile['time_save_log']['save']){
+                Artisan::queue('clearLog', [
+                    'user_id' => $user->id
+                ]);
+            }
         }
         return $data;
     }
