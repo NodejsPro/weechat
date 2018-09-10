@@ -88,7 +88,10 @@ class ClearLog extends Command
             // luu log voi so ngay
             // nếu tồn tại offset day -> clear số ngày trước đấy.
             // nếu ko có offset day -> clear từ ngày hiện tại
-            $user_time_log = (int)$user_save_log['day'];
+            $user_time_log = 0;
+            if(isset($user_save_log['day'])){
+                $user_time_log = $user_save_log['day'];
+            }
         }
         Log::info('**** clear user ' . $user->user_name. ' day: ' . $user_time_log);
         $day_clear_log = date('Y-m-d', strtotime(-$user_time_log .'days'));

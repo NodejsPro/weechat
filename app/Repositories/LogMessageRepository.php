@@ -26,7 +26,7 @@ class LogMessageRepository extends BaseRepository
             $limit = config('constants.log_message_limit');
         }
         $model = $model->where('room_id', $room_id)
-                        ->whereNotIn('clear_log', [$user_id])
+                        ->where('uid', $user_id)
                         ->take($limit);
         if($last_time_of_message) {
             $model = $model->where('created_at', '>', $last_time_of_message);
@@ -154,8 +154,9 @@ class LogMessageRepository extends BaseRepository
     public function clearLogByUserRoom($room_id, $user_id, $time_save_log){
         $model = new $this->model;
         $model->setCollection($room_id . $this->base_collection);
-        $model = $model->where('ymd', '<=', $time_save_log);
-        $model = $model->push('clear_log', [$user_id], true);
+        $model = $model->where('ymd', '<=', $time_save_log)
+            ->where('uid', $user_id)
+            ->destroy();
     }
 
 }

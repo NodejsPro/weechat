@@ -15,6 +15,7 @@ use App\Repositories\UserMongoRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Lang;
@@ -860,6 +861,13 @@ class UserController extends Controller
                     'avatar' => isset($bk_profile['avatar']) ? $bk_profile['avatar'] : null,
                     'time_save_log' => isset($bk_profile['time_save_log']) ? $bk_profile['time_save_log'] : null,
                 ];
+                Log::info('update profile database ', $inputs);
+                // khong luu log thi chay luon command clear log
+                if(isset($bk_profile['time_save_log']['save']) && !(int)$bk_profile['time_save_log']['save']){
+                    Artisan::queue('clearLog', [
+                        'user_id' => $user->id, '--queue' => 'default'
+                    ]);
+                }
             }
             $user = $this->repUser->updateStatus($user, $inputs);
             $user_arr = [$user];
