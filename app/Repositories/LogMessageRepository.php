@@ -156,7 +156,7 @@ class LogMessageRepository extends BaseRepository
         $model->setCollection($room_id . $this->base_collection);
         $model = $model->where('ymd', '<=', $time_save_log)
             ->where('uid', $user_id)
-            ->destroy();
+            ->delete();
     }
 
 }
