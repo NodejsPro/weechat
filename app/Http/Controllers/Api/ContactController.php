@@ -82,14 +82,17 @@ class ContactController extends Controller
             ], 422);
         }
         $start = isset($inputs['start']) ? (int)$inputs['start'] : 0;
-        $length = isset($inputs['length']) ? (int)$inputs['length'] : config('constants.per_page')[3];
+        $length = isset($inputs['length']) ? (int)$inputs['length'] : config('constants.per_page')[5];
         $phone = $inputs['phone'];
         $user = $this->repUser->getOneByField('phone', $phone);
         if($user){
             if(config('app.env') == 'local'){
                 $user_contact = $this->repUser->getList(null, $start, $length);
             }else{
-                $user_contact = $this->repUser->getList($user->contact, $start, $length);
+                $user_contact = new Collection();
+                if(!empty($user->contact)){
+                    $user_contact = $this->repUser->getList($user->contact, $start, $length);
+                }
             }
             $room_one_one = $this->repRoom->getAllByRoomType($user->id, config('constants.room_type.one_one'));
             $user_contact_data = $this->convertUserData($user_contact, true);
