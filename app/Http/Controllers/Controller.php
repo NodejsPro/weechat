@@ -169,9 +169,6 @@ class Controller extends BaseController
     }
 
     public function getRandomCode($number = 6){
-        if($number == 6){
-            return '123546';
-        }
         $min = pow(10, $number);
         $max = pow(10, $number + 1) - 1;
         $code = random_int($min, $max);
