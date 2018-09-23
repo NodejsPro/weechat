@@ -143,9 +143,7 @@ class Controller extends BaseController
     }
 
     public function sendSMS($phone, $code){
-        $enable_sms = config('constants.enable_sms');
-        $enable_sms = (int)$enable_sms;
-        if(!$enable_sms){
+        if(config('app.env') == 'local'){
             return [
                 'success' => true,
             ];
