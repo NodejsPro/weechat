@@ -143,9 +143,13 @@ class Controller extends BaseController
     }
 
     public function sendSMS($phone, $code){
-        return [
-            'success' => true,
-        ];
+        $enable_sms = config('constants.enable_sms');
+        $enable_sms = (int)$enable_sms;
+        if(!$enable_sms){
+            return [
+                'success' => true,
+            ];
+        }
         Log::info('send sms demo via code ' . $code);
 //        return true;
         $url = config('sms.request.send_sms');

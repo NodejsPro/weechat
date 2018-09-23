@@ -791,7 +791,11 @@ class UserController extends Controller
                 }
                 if(count($bk_profile) > 0){
 //                    $code = $this->getValidateToken();
-                    $code = '123456789';
+                    if(config('app.env') == 'local'){
+                        $code = config('app.code_sms_profile');
+                    }else{
+                        $code = $this->getValidateToken();
+                    }
                     $this->sendSMS($user->phone, $code);
                     $this->repUser->saveProfileBK($user, $bk_profile, $code);
                     return Response::json(array(
