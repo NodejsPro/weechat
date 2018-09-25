@@ -81,6 +81,13 @@ class RoomRepository extends BaseRepository
         return $room;
     }
 
+
+    public function updateRoomKey($room, $admin_key_flg){
+        $room->admin_key_flg = $admin_key_flg;
+        $room->save();
+        return $room;
+    }
+
     public function getAll($room_arr, $offset = 0, $limit = 10)
     {
         $model = new $this->model;
@@ -144,6 +151,18 @@ class RoomRepository extends BaseRepository
             $model = $model->where('member', 'size', count($member));
         }
         return $model->first();
+    }
+
+    public function clearRoomByMember($member, $room_type){
+        $model = new $this->model;
+        $model = $model->where('member', 'all', $member);
+        $model = $model->where('room_type', $room_type);
+        if($room_type == config('constants.room_type.one_one')){
+            $model = $model->where('member', 'size', 2);
+        }else{
+            $model = $model->where('member', 'size', count($member));
+        }
+        return $model->get();
     }
 /**
  * 1 năm: 30.000$ học phí

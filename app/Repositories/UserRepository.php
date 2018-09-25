@@ -156,6 +156,12 @@ class UserRepository extends BaseRepository
         return $model->get();
     }
 
+    public function getListData($user_ids){
+        $model = new $this->model;
+        $model = $model->whereIn('_id', $user_ids);
+        return $model->get();
+    }
+
     public function getListByPhone($phones)
     {
         $model = new $this->model;

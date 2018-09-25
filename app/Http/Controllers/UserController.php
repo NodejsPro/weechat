@@ -7,8 +7,10 @@ use App\Http\Requests\UserRequest;
 use App\Repositories\ConnectPageRepository;
 use App\Repositories\ConnectRepository;
 use App\Repositories\EmbotPlanRepository;
+use App\Repositories\LogMessageRepository;
 use App\Repositories\MasterRepository;
 use App\Repositories\PlanRepository;
+use App\Repositories\RoomRepository;
 use App\Repositories\UserMongoRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
@@ -31,15 +33,17 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     protected $repUser;
-    protected $repMaster;
-	protected $repPlan;
-    protected $repConnect;
-    protected $repConnectPage;
+    protected $repRoom;
+    protected $repLogMessage;
     protected $file_manager;
     public function __construct(
-        UserRepository $user
+        UserRepository $user,
+        RoomRepository $room,
+        LogMessageRepository $log
     ){
         $this->repUser = $user;
+        $this->repRoom = $room;
+        $this->repLogMessage = $log;
         $this->file_manager = new ImageManager(array('driver' => 'gd'));
     }
     /**
@@ -151,10 +155,15 @@ class UserController extends Controller
                         foreach ($contacts as $key => $contact){
                             $user = $this->repUser->getById($contact);
                             if($user){
-                                $result[] = $user->user_name;
+                                if($user->user_name){
+                                    $result[] = $user->user_name;
+                                }else{
+                                    $result[] = '<no-name '. $user->phone.'>';
+                                }
                             }
                         }
                     }
+                    Log::info($result);
                     return implode(', ', $result);
                 })
                 ->setTotalRecords($count)->make(true);
@@ -186,6 +195,7 @@ class UserController extends Controller
             $inputs['avatar'] = $path;
         }
         try{
+            unset($inputs['contact']);
             $user = $this->repUser->store($inputs, $user->id);
             $this->updateContact($contact_list, $user);
             return redirect('user')->with('alert-success', trans('message.save_success', ['name' => trans('default.user')]));
@@ -252,8 +262,9 @@ class UserController extends Controller
                     $this->resizeImage($this->file_manager, $avatar, config('constants.size_image'), public_path($path));
                     $inputs['avatar'] = $path;
                 }
-                $edit_user = $this->repUser->update($edit_user, $inputs);
                 $this->updateContact($contact_list, $edit_user);
+                unset($inputs['contact']);
+                $edit_user = $this->repUser->update($edit_user, $inputs);
                 return redirect('user')->with('alert-success', trans('message.update_success', ['name' => trans('default.user')]));
             }
             abort('404');
@@ -329,20 +340,59 @@ class UserController extends Controller
     }
 
     public function updateContact($user_contact_list, $user_edit){
-        // Neu user edit co 1 contact trong user user_contact_list
-        // thì user đó cũng phải có contact của user edit
-        $user_edit_id = $user_edit->id;
-        $contact_arr = [];
-//        $this->repUser->getContact();
-        foreach($user_contact_list as $user){
-            $contact = !empty($user->contact) ? $user->contact : [];
-            if(!in_array($user_edit_id, $contact)){
-                $contact[] = $user_edit_id;
-                $this->repUser->updateContact($user, $contact);
+        try{
+            Log::info('*****************updateContact');
+            // new contact: $user_contact_list
+            // old contact: $user_edit->contact
+            // Nếu thêm 1 contact: contact được thêm vào cả 2 user A,B
+            // Nếu bỏ 1 contact: contact phải được bỏ ở cả 2 user, admin_share_key_flg = 0
+            // Neu user edit co 1 contact trong user user_contact_list
+            // thì user đó cũng phải có contact của user edit
+            $user_edit_id = $user_edit->id;
+            $new_contact = [];
+            foreach($user_contact_list as $user){
+                $new_contact[] = $user->_id;
             }
-            $contact_arr[] = $user->id;
+            $old_contact = empty($user_edit->contact) ? [] : $user_edit->contact;
+            $user_only_new_contact = array_diff($new_contact, $old_contact);
+            $user_only_old_contact = array_diff($old_contact, $new_contact);
+            Log::info('$user_only_new_contact');
+            Log::info($user_only_new_contact);
+            Log::info('$user_only_old_contact');
+            Log::info($user_only_old_contact);
+            if(!empty($user_only_new_contact)){
+                $list_new_contact = $this->repUser->getListData($user_only_new_contact);
+                foreach($list_new_contact as $user){
+                    $contact = !empty($user->contact) ? $user->contact : [];
+                    if(!in_array($user_edit_id, $contact)){
+                        $contact[] = $user_edit_id;
+                        $this->repUser->updateContact($user, $contact);
+                    }
+                }
+            }
+            if(!empty($user_only_old_contact)){
+                $list_old_contact = $this->repUser->getListData($user_only_old_contact);
+                $disable = config('constants.active.disable');
+                $room_one_one = config('constants.room_type.one_one');
+                foreach($list_old_contact as $user){
+                    $contact = !empty($user->contact) ? $user->contact : [];
+                    if(in_array($user_edit_id, $contact)){
+                        $contact[] = $user_edit_id;
+                        unset($contact[array_search($user_edit_id, $contact)]);
+                        $contact = array_values($contact);
+                        $this->repUser->updateContact($user, $contact);
+                        $room_clear = [$user->id, $user_edit_id];
+                        $rooms = $this->repRoom->clearRoomByMember($room_clear, $room_one_one);
+                        foreach($rooms as $room){
+                            $this->repRoom->updateRoomKey($room, $disable);
+                        }
+                    }
+                }
+            }
+            $this->repUser->updateContact($user_edit, $new_contact);
+        }catch (\Exception $e){
+            Log::info('*********************error when update contact');
         }
-        $this->repUser->updateContact($user_edit, $contact_arr);
     }
 
     public function accountEdit()
