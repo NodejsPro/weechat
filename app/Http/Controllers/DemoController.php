@@ -44,6 +44,7 @@ class DemoController extends Controller
         UserRepository $user
     )
     {
+        dd(1);
         $this->repUser = $user;
     }
 
