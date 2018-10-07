@@ -353,42 +353,32 @@ class UserController extends Controller
             foreach($user_contact_list as $user){
                 $new_contact[] = $user->_id;
             }
-            $old_contact = empty($user_edit->contact) ? [] : $user_edit->contact;
-            $user_only_new_contact = array_diff($new_contact, $old_contact);
-            $user_only_old_contact = array_diff($old_contact, $new_contact);
-            Log::info('$user_only_new_contact');
-            Log::info($user_only_new_contact);
-            Log::info('$user_only_old_contact');
-            Log::info($user_only_old_contact);
-            if(!empty($user_only_new_contact)){
-                $list_new_contact = $this->repUser->getListData($user_only_new_contact);
-                foreach($list_new_contact as $user){
+            $list_new_contact = $this->repUser->getListData($new_contact);
+            foreach($list_new_contact as $user){
+                $contact = !empty($user->contact) ? $user->contact : [];
+                if(!in_array($user_edit_id, $contact)){
+                    $contact[] = $user_edit_id;
+                    $this->repUser->updateContact($user, $contact);
+                }
+            }
+
+            $list_old_contact =  $this->repUser->getListUserByUserContactID($user_edit_id);
+            $disable = config('constants.active.disable');
+            $room_one_one = config('constants.room_type.one_one');
+            foreach($list_old_contact as $user){
+                if(!in_array($user->id, $new_contact)){
                     $contact = !empty($user->contact) ? $user->contact : [];
-                    if(!in_array($user_edit_id, $contact)){
-                        $contact[] = $user_edit_id;
-                        $this->repUser->updateContact($user, $contact);
+                    unset($contact[array_search($user_edit_id, $contact)]);
+                    $contact = array_values($contact);
+                    $this->repUser->updateContact($user, $contact);
+                    $room_clear = [$user->id, $user_edit_id];
+                    $rooms = $this->repRoom->clearRoomByMember($room_clear, $room_one_one);
+                    foreach($rooms as $room){
+                        $this->repRoom->updateRoomKey($room, $disable);
                     }
                 }
             }
-            if(!empty($user_only_old_contact)){
-                $list_old_contact = $this->repUser->getListData($user_only_old_contact);
-                $disable = config('constants.active.disable');
-                $room_one_one = config('constants.room_type.one_one');
-                foreach($list_old_contact as $user){
-                    $contact = !empty($user->contact) ? $user->contact : [];
-                    if(in_array($user_edit_id, $contact)){
-                        $contact[] = $user_edit_id;
-                        unset($contact[array_search($user_edit_id, $contact)]);
-                        $contact = array_values($contact);
-                        $this->repUser->updateContact($user, $contact);
-                        $room_clear = [$user->id, $user_edit_id];
-                        $rooms = $this->repRoom->clearRoomByMember($room_clear, $room_one_one);
-                        foreach($rooms as $room){
-                            $this->repRoom->updateRoomKey($room, $disable);
-                        }
-                    }
-                }
-            }
+
             $this->repUser->updateContact($user_edit, $new_contact);
         }catch (\Exception $e){
             Log::info('*********************error when update contact');

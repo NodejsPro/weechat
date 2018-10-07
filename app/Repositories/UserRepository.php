@@ -449,4 +449,11 @@ class UserRepository extends BaseRepository
         $model = $model->get();
         return $model;
     }
+
+    public function getListUserByUserContactID($user_id){
+        $model = new $this->model;
+        $model = $model->where('contact', 'all', [$user_id]);
+        $model = $model->get();
+        return $model;
+    }
 }
