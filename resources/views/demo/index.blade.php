@@ -60,7 +60,7 @@ $bot_picture = empty(Auth::user()->avatar) ? 'images/profile.png' : Auth::user()
                 room_id = null;
             socket.on('connect', function() {
                 console.log('socket on connect');
-                socket.emit('user_join', { user_id: user_login_id, key: user_login_id });
+                socket.emit('user_join', { user_id: user_login_id, admin_key_flg: [] });
 
                 socket.on('status_join', function (data) {
                     console.log('status_join: ', data);
@@ -109,6 +109,11 @@ $bot_picture = empty(Auth::user()->avatar) ? 'images/profile.png' : Auth::user()
                         }
                     }
                 });
+
+                socket.on('user_online', function (data) {
+                    console.log('user_online: ', data);
+                });
+
             });
 
             initSizeConversation();

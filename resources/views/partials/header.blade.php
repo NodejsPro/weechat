@@ -19,7 +19,7 @@
     <div class="top-nav nav-center clearfix">
         <ul class="nav pull-right top-menu">
             <li class="dropdown">
-                {{--<a class="{{Request::is('demo') ? 'blue-color' : ''}}" href="{{ url('demo')}}"><span>{{{ trans('menu.demo')}}}</span></a>--}}
+                <a class="{{Request::is('demo') ? 'blue-color' : ''}}" href="{{ url('demo')}}"><span>{{{ trans('menu.demo')}}}</span></a>
             </li>
             <li class="dropdown">
                 <a class="{{Request::is('user') || Request::is('user/*/edit') ? 'blue-color' : ''}}" href="{{ url('user')}}"><span>{{{ trans('menu.user_management')}}}</span></a>
