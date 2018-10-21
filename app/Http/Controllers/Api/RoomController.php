@@ -78,11 +78,18 @@ class RoomController extends Controller
         $start = isset($inputs['start']) ? (int)$inputs['start'] : 0;
         $length = isset($inputs['length']) ? (int)$inputs['length'] : config('constants.per_page')[3];
         if($user){
-            $user_room = $this->repRoom->getByUserID($user->id, [], null, $start, $length);
+            $user_id = $user->id;
+            $user_room = $this->repRoom->getByUserID($user_id, [], null, $start, $length);
             $data_room = $this->convertRoomData($user_room);
             $member_user_id = [];
+            $admin_key_flg_disable = config('constants.active.disable');
             foreach ($data_room as $index => $room){
-                $unread = $this->repUnreadMessage->getUnread($room['id'], $user->id);
+                // xóa các room mà chính admin get mà bị mất key
+                if(isset($room['admin_key_flg']) && isset($room['admin_id']) && $room['admin_key_flg'] == $admin_key_flg_disable && $room['admin_id'] == $user_id){
+                    unset($data_room[$index]);
+                    continue;
+                }
+                $unread = $this->repUnreadMessage->getUnread($room['id'], $user_id);
                 $member_user_id = array_merge($member_user_id, $room['member']);
                 $data_last_message = [];
                 $data_unread_message_count = 0;
@@ -100,6 +107,7 @@ class RoomController extends Controller
                 $data_room[$index]['data_unread_message_count'] = $data_unread_message_count;
                 $data_room[$index]['last_message'] = count($data_last_message) ? $data_last_message : [""  => ""];
             }
+            $data_room = array_values($data_room);
             Log::info('$data_room');
             Log::info($data_room);
             $member_data = [];

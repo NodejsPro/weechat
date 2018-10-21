@@ -86,6 +86,7 @@ class ContactController extends Controller
         $phone = $inputs['phone'];
         $user = $this->repUser->getOneByField('phone', $phone);
         if($user){
+            $user_id = $user->id;
             if(config('app.env') == 'local'){
                 $user_contact = $this->repUser->getList(null, $start, $length);
             }else{
@@ -96,7 +97,13 @@ class ContactController extends Controller
             }
             $room_one_one = $this->repRoom->getAllByRoomType($user->id, config('constants.room_type.one_one'));
             $user_contact_data = $this->convertUserData($user_contact, true);
+            $admin_key_flg_disable = config('constants.active.disable');
             foreach($room_one_one as $id => $room){
+                // xóa các room mà chính admin get mà bị mất key
+                if($room->admin_key_flg == $admin_key_flg_disable && $room->admin_id == $user_id){
+                    unset($room_one_one[$id]);
+                    continue;
+                }
                 // moi room can lay ve message chua doc, last message
                 $unread = $this->repUnreadMessage->getUnread($room->id, $user->id);
                 $data = [
