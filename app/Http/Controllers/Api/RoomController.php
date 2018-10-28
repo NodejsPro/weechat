@@ -56,9 +56,9 @@ class RoomController extends Controller
     {
     }
 
-    public function getList(Request $request){
+    public function getListOld(Request $request){
         $inputs = $request->all();
-        Log::info('api getList');
+        Log::info('api getListOld');
         Log::info($inputs);
 
         $validator = Validator::make(
@@ -107,6 +107,94 @@ class RoomController extends Controller
                 $data_room[$index]['data_unread_message_count'] = $data_unread_message_count;
                 $data_room[$index]['last_message'] = count($data_last_message) ? $data_last_message : [""  => ""];
             }
+            $data_room = array_values($data_room);
+            Log::info('$data_room');
+            Log::info($data_room);
+            $member_data = [];
+            if(count($member_user_id) > 0){
+                $member_name = $this->repUser->getList($member_user_id, 0, config('constants.per_page.5'));
+                $member_data = $this->convertUserData($member_name);
+            }
+            return Response::json([
+                'success' => true,
+                'data' => $data_room,
+                'member_name' => $member_data
+            ], 200);
+        }
+        return Response::json([
+            'success' => true,
+            'msg' => trans('message.user_not_exists')
+        ], 400);
+    }
+
+    public function getList(Request $request){
+        $inputs = $request->all();
+        Log::info('api getList');
+        Log::info($inputs);
+
+        $validator = Validator::make(
+            $inputs,
+            array(
+                'phone' => 'required'
+            )
+        );
+        if ($validator->fails()){
+            return response([
+                "success" => false,
+                'msg' => $validator->errors()->getMessages()
+            ], 422);
+        }
+        $phone = $inputs['phone'];
+        $user = $this->repUser->getOneByField('phone', $phone);
+        $start = isset($inputs['start']) ? (int)$inputs['start'] : 0;
+        $length = isset($inputs['length']) ? (int)$inputs['length'] : config('constants.per_page')[3];
+        if($user){
+            $user_id = $user->id;
+            $admin_key_flg_disable = config('constants.active.disable');
+            // get list room
+            $user_room = $this->repRoom->getByUserID($user_id, [], null, $start, $length);
+            $room_id_arr = [];
+            $data_unread_room = [];
+            $member_user_id = [];
+            $data_room_before_sort = [];
+            foreach ($user_room as $index => $room){
+                // xóa các room mà chính admin get mà bị mất key
+                if(isset($room->admin_key_flg) && isset($room->admin_id) && $room->admin_key_flg == $admin_key_flg_disable && $room->admin_id == $user_id){
+                    continue;
+                }
+                $room_id = $room->id;
+                $room_id_arr[] = $room_id;
+                $data_room_before_sort[$room_id] = [
+                    'name' => $room->name,
+                    'id' => $room->_id,
+                    'room_type' => $room->room_type,
+                    'member' => $room->member,
+                    'admin_id' => $room->admin_id,
+                    'admin_key_flg' => $room->admin_key_flg,
+                    'data_unread_message_count' => 0,
+                    'last_message' => [""  => ""],
+                ];
+                $member_user_id = array_merge($member_user_id, $room->member);
+            }
+            if(count($room_id_arr)){
+                $last_messages = $this->repLastMessage->getList($room_id_arr);
+                foreach($last_messages as $last_message){
+                    $data_room_before_sort[$last_message->room_id]['last_message'] = [
+                        'user_id' => $last_message->user_id,
+                        'message' => $last_message->message,
+                        'message_type' => $last_message->message_type,
+                    ];
+                }
+
+                $unreads = $this->repUnreadMessage->getList($user_id);
+                foreach($unreads as $unread){
+                    if(isset($data_room_before_sort[$unread->room_id])){
+                        $data_unread_room[$unread->room_id] = $data_room_before_sort[$unread->room_id];
+                        $data_unread_room[$unread->room_id]['data_unread_message_count'] = $unread->count;
+                    }
+                }
+            }
+            $data_room = $data_unread_room + $data_room_before_sort;
             $data_room = array_values($data_room);
             Log::info('$data_room');
             Log::info($data_room);
