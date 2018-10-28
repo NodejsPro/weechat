@@ -18,4 +18,9 @@ class LastMessageRepository extends BaseRepository
 	{
 		$this->model = $model;
 	}
+
+    public function getList($room_id_arr){
+        return $this->model->whereIn('room_id', $room_id_arr)
+            ->orderBy('created_at', 'desc')->get();
+    }
 }

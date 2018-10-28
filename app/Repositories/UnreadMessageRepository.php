@@ -23,4 +23,9 @@ class UnreadMessageRepository extends BaseRepository
             ->where('user_id', $user_id)
             ->first();
     }
+
+    public function getList($user_id){
+        return $this->model->where('user_id', $user_id)
+            ->orderBy('created_at', 'desc')->get();
+    }
 }
