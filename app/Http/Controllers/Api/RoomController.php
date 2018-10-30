@@ -157,6 +157,7 @@ class RoomController extends Controller
             $data_unread_room = [];
             $member_user_id = [];
             $data_room_before_sort = [];
+            $data_room_time = [];
             foreach ($user_room as $index => $room){
                 // xóa các room mà chính admin get mà bị mất key
                 if(isset($room->admin_key_flg) && isset($room->admin_id) && $room->admin_key_flg == $admin_key_flg_disable && $room->admin_id == $user_id){
@@ -174,25 +175,42 @@ class RoomController extends Controller
                     'data_unread_message_count' => 0,
                     'last_message' => [""  => ""],
                 ];
+                $data_room_time[$room_id] = strtotime($room->created_at);
                 $member_user_id = array_merge($member_user_id, $room->member);
             }
             if(count($room_id_arr)){
                 $last_messages = $this->repLastMessage->getList($room_id_arr);
                 foreach($last_messages as $last_message){
-                    $data_room_before_sort[$last_message->room_id]['last_message'] = [
-                        'user_id' => $last_message->user_id,
-                        'message' => $last_message->message,
-                        'message_type' => $last_message->message_type,
-                    ];
+                    $room_last_message_id = $last_message->room_id;
+                    if(isset($data_room_before_sort[$room_last_message_id])){
+                        $data_room_before_sort[$room_last_message_id]['last_message'] = [
+                            'user_id' => $last_message->user_id,
+                            'message' => $last_message->message,
+                            'message_type' => $last_message->message_type,
+                        ];
+                        $room_time_current = strtotime($last_message->created_at);
+                        if(isset($data_room_time[$room_last_message_id]) && $room_time_current > $data_room_time[$room_last_message_id]){
+                            $data_room_time[$room_last_message_id] = $room_time_current;
+                        }
+                    }
                 }
 
                 $unreads = $this->repUnreadMessage->getList($user_id);
                 foreach($unreads as $unread){
-                    if(isset($data_room_before_sort[$unread->room_id])){
-                        $data_unread_room[$unread->room_id] = $data_room_before_sort[$unread->room_id];
-                        $data_unread_room[$unread->room_id]['data_unread_message_count'] = $unread->count;
+                    $room_unread_id = $unread->room_id;
+                    if(isset($data_room_before_sort[$room_unread_id])){
+                        $data_room_before_sort[$room_unread_id]['data_unread_message_count'] = $unread->count;
+                        $room_time_current = strtotime($unread->created_at);
+                        if(isset($data_room_time[$room_unread_id]) && $room_time_current > $data_room_time[$room_unread_id]){
+                            $data_room_time[$room_unread_id] = $room_time_current;
+                        }
                     }
                 }
+            }
+            arsort($data_room_time);
+            $data_room = [];
+            foreach($data_room_time as $room_id => $item_time){
+                $data_room[] = $data_room_before_sort[$room_id];
             }
             $data_room = $data_unread_room + $data_room_before_sort;
             $data_room = array_values($data_room);
